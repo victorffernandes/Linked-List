@@ -10,7 +10,6 @@ namespace ListaEncadeada
     {
         static void Main(string[] args)
         {
-            
             LinkedList<string> n = new LinkedList<string>();
             n.push("Primeiro");
             n.push("Segundo");
@@ -20,7 +19,7 @@ namespace ListaEncadeada
             n.push("Sexto");
             n.InsertAt(3, "Hey I was inserted here");
             n.print();
-            Console.WriteLine(n.getLength());
+            Console.WriteLine("We have "+n.getLength()+" elements in our Linked List!!");
             Console.ReadKey();
         }
     }

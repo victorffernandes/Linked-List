@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 
 namespace ListaEncadeada
 {
+    class Element<D>
+    {
+        public D data;
+        public Element<D> successor = null;
+
+        public Element(D d)
+        {
+            data = d;
+        }
+
+
+    }
+
     class LinkedList <T>
     {
         Element<T> root;
-
-        public LinkedList()
-        {
-
-        }
-
         public void print()
         {
             Element<T> actual = root;
-            do
-            {
+            do{
                 Console.WriteLine(actual.data);
                 actual = actual.successor;
             }
