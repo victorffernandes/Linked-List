@@ -6,24 +6,19 @@ using System.Threading.Tasks;
 
 namespace ListaEncadeada
 {
-    class Element<D>
-    {
+    class Element<D>    {
         public D data;
         public Element<D> successor = null;
 
-        public Element(D d)
-        {
+        public Element(D d) {
             data = d;
         }
-
-
     }
 
     class LinkedList <T>
     {
         Element<T> root;
-        public void print()
-        {
+        public void print() {
             Element<T> actual = root;
             do{
                 Console.WriteLine(actual.data);
@@ -79,8 +74,7 @@ namespace ListaEncadeada
         public int getLength() {
             Element<T> actual = root;
             int i = 1;
-            while (actual.successor != null)
-            {
+            while (actual.successor != null)    {
                 i++;
                 actual = actual.successor;
             }
@@ -94,8 +88,7 @@ namespace ListaEncadeada
             }
             else {
                 Element<T> actual = root;
-                while (actual.successor != null)
-                {
+                while (actual.successor != null){
                     actual = actual.successor;
                 }
                 actual.successor = new Element<T>(i);
