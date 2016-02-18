@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ListaEncadeada
 {
+    #region Element Class
     class Element<D>    {
         public D data;
         public Element<D> successor = null;
@@ -14,10 +15,13 @@ namespace ListaEncadeada
             data = d;
         }
     }
+    #endregion
 
-    class LinkedList <T>
+
+    class ILinkedList <T>
     {
         Element<T> root;
+
         public void print() {
             Element<T> actual = root;
             do{
@@ -28,16 +32,87 @@ namespace ListaEncadeada
             Console.WriteLine(actual.data);
         }
 
+
+        #region Length Method
+        public int getLength()
+        {
+            Element<T> actual = root;
+            int i = 1;
+            while (actual.successor != null)
+            {
+                i++;
+                actual = actual.successor;
+            }
+            if (root == null) return 0;
+            else return i;
+        }
+
+        public int Length
+        {
+            get {
+                return getLength();
+            }
+        }
+
+        #endregion
+
+        #region Overload Remove Methods
         public void Remove(int index) {
             Element<T> a = root;
             Element<T> b = null;
-            for (int i = 0;i< index; i++) {
-                b = a;
+            if (index != 0)
+            {
+                for (int i = 0; i < index; i++)
+                {
+                    b = a;
+                    a = a.successor;
+                }
+                if (a.successor != null) b.successor = a.successor;
+                else b.successor = null;
+            }
+            else {
+                root = root.successor;
+            }
+        }
+
+        public void Remove(T value)
+        {
+            Element<T> a = root;
+            Element<T> b = null;
+            if (!root.data.Equals(value))
+            {
+                while (a.successor != null)
+                {
+                    if (a.data.Equals(value))
+                    {
+                        b.successor = a.successor;
+                    }
+                    b = a;
+                    a = a.successor;
+                }
+                if (a.successor != null) b.successor = a.successor;
+                else b.successor = null;
+            }
+            else {
+                root = root.successor;
+            }
+        }
+        #endregion
+
+        public void AddAfterValue(T sort, T value) {
+            Element<T> a = root;
+            Element<T> New = new Element<T>(value);
+            while (a.successor != null)
+            {
+                if (a.data.Equals(sort))
+                {
+                    New.successor = a.successor; 
+                    a.successor = New;
+                }
                 a = a.successor;
             }
-            if (a.successor != null) b.successor = a.successor;
-            else b.successor = null;
         }
+
 
         public void AddAtBeggining(T value) {
             Element<T> g = new Element<T>(value);
@@ -71,17 +146,6 @@ namespace ListaEncadeada
             return a.data;
         }
 
-        public int getLength() {
-            Element<T> actual = root;
-            int i = 1;
-            while (actual.successor != null)    {
-                i++;
-                actual = actual.successor;
-            }
-            if (root == null) return 0;
-            else return i;
-        }
-
         public void push(T i) {
             if (root == null) {
                 root = new Element<T>(i);
@@ -92,6 +156,27 @@ namespace ListaEncadeada
                     actual = actual.successor;
                 }
                 actual.successor = new Element<T>(i);
+            }
+        }
+
+        public void SwitchPosition(int i1, int i2){
+            int i = 0;
+            Element<T> actual = root;
+            Element<T> element1 = null;
+            while (actual.successor != null)
+            {
+                if (i1 == i)
+                {
+                    element1 = actual;
+                }
+                else if (i2 == i)
+                {
+                    T val = element1.data;
+                    element1.data = actual.data;
+                    actual.data = val;
+                }
+                actual = actual.successor;
+                i++;
             }
         }
 
