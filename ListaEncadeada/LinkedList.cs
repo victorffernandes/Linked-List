@@ -22,6 +22,7 @@ namespace ListaEncadeada
     {
         Element<T> root;
 
+        #region Print All Elements Method
         public void print() {
             Element<T> actual = root;
             do{
@@ -31,7 +32,7 @@ namespace ListaEncadeada
             while (actual.successor != null);
             Console.WriteLine(actual.data);
         }
-
+        #endregion
 
         #region Length Method
         public int getLength()
