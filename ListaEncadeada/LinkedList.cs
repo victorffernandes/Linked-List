@@ -164,18 +164,25 @@ namespace ListaEncadeada
             int i = 0;
             Element<T> actual = root;
             Element<T> element1 = null;
+            Element<T> beforeElement1 = null;
+            Element<T> beforeCurrent = null;
             while (actual.successor != null)
             {
                 if (i1 == i)
                 {
+                    beforeElement1 = beforeCurrent;
                     element1 = actual;
                 }
                 else if (i2 == i)
                 {
-                    T val = element1.data;
-                    element1.data = actual.data;
-                    actual.data = val;
+                    beforeElement1.successor = actual;
+                    beforeCurrent.successor = element1;
+                    
+                    Element<T> h = actual.successor;
+                    actual.successor = element1.successor;
+                    element1.successor = h;
                 }
+                beforeCurrent = actual; 
                 actual = actual.successor;
                 i++;
             }

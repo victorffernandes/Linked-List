@@ -18,11 +18,7 @@ namespace ListaEncadeada
             n.push("Quarto");
             n.push("Quinto");
             n.push("Sexto");
-            n.InsertAt(3, "Hey I was inserted here");
-            n.SwitchPosition(0, 4);
-            n.Remove("Sexto");
-            n.Remove("Primeiro");
-            n.AddAfterValue("Hey I was inserted here", "buu");
+            n.SwitchPosition(1, 4);
             n.print();
             Console.WriteLine("We have "+n.Length+" elements in our Linked List!!");
             Console.ReadKey();
